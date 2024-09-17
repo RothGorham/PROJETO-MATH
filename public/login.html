@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Números nos Trilhos</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero">
+            <h1><span>MATEMÁTICA NO METRO</span></h1>
+          </a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger">
+            <div class="bar"></div>
+          </div>
+          <ul>
+            <li><a href="index.html" data-after="Home">Home</a></li>
+            <li><a href="Cadastro.html" data-after="About">Crie sua conta grátis</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Header -->
+  <div class="container">
+    <div class="card">
+      <a class="login">Log in</a>
+      <form id="loginForm" action="/login" method="POST">
+        <div class="inputBox" style="margin-bottom: 15px;">
+          <input type="text" id="username" name="username" required="required">
+          <span class="user">Username</span>
+        </div>
+  
+        <div class="inputBox" style="margin-bottom: 15px;">
+          <input type="password" id="password" name="password" required="required">
+          <span>Password</span>
+        </div>
+  
+        <button type="submit" class="enter">Enter</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- End Footer -->
+  <script src="./app.js"></script>
+</body>
+
+</html>
