@@ -1,329 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="blogs.css">
-  <title>Números nos Trilhos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números nos Trilhos - Blog</title>
+    <link rel="stylesheet" href="stylee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
-  <!-- Header -->
-  <section id="header">
-    <div class="header container">
-      <div class="nav-bar">
-        <div class="brand">
-          <a href="#hero">
-            <h1><span>MATEMÁTICA NO METRO</span></h1>
-          </a>
+    <!-- Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <h1>Matemática no Metrô</h1>
+                <p>Blog de Perguntas e Respostas</p>
+            </div>
+            <div class="nav-actions">
+                <a href="Areaaluno.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+                <button onclick="mostrarFormulario()" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Novo Post
+                </button>
+            </div>
         </div>
-      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Bem-vindo ao Blog</h1>
+            <p>Compartilhe suas dúvidas e conhecimentos com a comunidade</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="posts-container" id="posts">
+            <!-- Posts will be loaded here -->
+        </div>
+    </main>
+
+    <!-- Create Post Modal -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Criar Novo Post</h2>
+                <button class="close-btn" onclick="mostrarFormulario()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form onsubmit="criarPost(event)" class="post-form">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Apenas professores poderão apagar este post. Revise antes de publicar.</p>
+                </div>
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" name="titulo" required 
+                           placeholder="Digite o título do seu post">
+                </div>
+                <div class="form-group">
+                    <label for="conteudo">Conteúdo</label>
+                    <textarea id="conteudo" name="conteudo" rows="6" required
+                              placeholder="Digite o conteúdo do seu post"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="mostrarFormulario()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Publicar</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </section>
 
-  <section id="hero">
-    <div class="hero container">
-      <div>
-        <h1>Seja Bem-vindo<span></span></h1>
-        <br>
-        <h1>Blog de Perguntas e Respostas <span></span></h1>
-        <br>
-        <a href="Areaaluno.html" type="button" class="cta">Voltar</a>
-        <br>
-        <a onclick="mostrarFormulario()" class="cta">Criar novo post</a>
-      </div>
+    <!-- Reply Modal -->
+    <div id="respostaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Responder ao Post</h2>
+                <button class="close-btn" onclick="mostrarFormularioResposta()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form onsubmit="enviarResposta(event)" class="reply-form">
+                <div class="form-group">
+                    <label for="respostaConteudo">Sua Resposta</label>
+                    <textarea id="respostaConteudo" name="respostaConteudo" rows="4" required
+                              placeholder="Digite sua resposta"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="mostrarFormularioResposta()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Responder</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </section>
 
-  <!-- Main Content -->
-  <section id="main">
-    <div class="main container">
-      <!-- Área de posts do blog -->
-      <div id="posts">
-        <!-- Os posts aparecerão aqui -->
-      </div>
-    </div>
-  </section>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Matemática no Metrô - Blog de Perguntas e Respostas</p>
+        </div>
+    </footer>
 
-<!-- Modal para criar novo post -->
-<div id="postModal" class="modal" style="display: none;">
-  <div class="modal-content">
-    <span class="close" onclick="mostrarFormulario()">&times;</span>
-    <h2>Criar Novo Post</h2>
-    <form onsubmit="criarPost(event)">
-      <p style="color: red; font-weight: bold;">Apenas professores poderão apagar este post. Tenha certeza do que escreveu antes de publicar.</p>
-      <div class="form-group">
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo" required>
-      </div>
-      <div class="form-group">
-        <label for="conteudo">Conteúdo:</label>
-        <textarea id="conteudo" name="conteudo" rows="10" required></textarea>
-      </div>
-      <br>
-      
-      <div class="form-group">
-        <button type="submit" class="playstore-button">
-          <span class="texts">
-            <span class="text-2">Publicar</span>
-          </span>
-        </button>
-        <button type="button" class="playstore-button" onclick="mostrarFormulario()">
-          <span class="texts">
-            <span class="text-2">Cancelar</span>
-          </span>
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<style>
- 
-.playstore-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #000;
-  border-radius: 9999px;
-  background-color: rgba(0, 0, 0, 1);
-  padding: 0.625rem 1.5rem;
-  text-align: center;
-  color: rgba(255, 255, 255, 1);
-  outline: 0;
-  transition: all .2s ease;
-  text-decoration: none;
-}
-
-.playstore-button:hover {
-  background-color: transparent;
-  color: rgba(0, 0, 0, 1);
-}
-
-.icon {
-  height: 1.5rem;
-  width: 1.5rem;
-}
-
-.texts {
-  margin-left: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  line-height: 1;
-}
-
-.text-1 {
-  margin-bottom: 0.25rem;
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
-.text-2 {
-  font-weight: 600;
-}
-
-</style>
-
-
-
-  <!-- Modal para responder a um post -->
-<div id="respostaModal" class="modal" style="display: none;">
-  <div class="modal-content">
-    <span class="close" onclick="mostrarFormularioResposta()">&times;</span>
-    <h2>Responder ao Post</h2>
-    <br>
-
-    
-    <form onsubmit="enviarResposta(event)">
-      <div class="form-group">
-        <label for="respostaConteudo">Resposta:</label>
-        <textarea id="respostaConteudo" name="respostaConteudo" rows="5" required></textarea>
-      </div>
-      <br>
-      <div class="form-group">
-        <button type="submit" class="playstore-button">
-          <span class="texts">
-            <span class="text-2">Enviar</span>
-          </span>
-        </button>
-        <button type="button" class="playstore-button" onclick="mostrarFormularioResposta()">
-          <span class="texts">
-            <span class="text-2">Cancelar</span>
-          </span>
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-
-  <!-- Footer -->
-  <section id="footer">
-    <div class="footer container">
-      <p>&copy; 2024 Blog de Perguntas e Respostas</p>
-    </div>
-  </section>
-
-  <style>
-    /* Estilo do Modal */
-    .modal {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 500px;
-      position: relative;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .post {
-      margin-bottom: 20px;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .reply-btn {
-      cursor: pointer;
-      font-size: 14px;
-      margin-top: 10px;
-      display: inline-block;
-      color: blue;
-    }
-
-    .resposta {
-      margin-left: 20px;
-      padding: 10px;
-      border-left: 2px solid #ddd;
-    }
-  </style>
-
-  <script>
-    let postIdParaResponder = null;
-
-    // Função para exibir/ocultar o modal de criação de post
-    function mostrarFormulario() {
-      var modal = document.getElementById("postModal");
-      modal.style.display = modal.style.display === "none" ? "flex" : "none";
-    }
-
-    // Função para exibir/ocultar o modal de resposta
-    function mostrarFormularioResposta(id = null) {
-      postIdParaResponder = id;
-      var modal = document.getElementById("respostaModal");
-      modal.style.display = modal.style.display === "none" ? "flex" : "none";
-    }
-
-    // Função para criar um novo post
-    async function criarPost(event) {
-      event.preventDefault();
-      var titulo = document.getElementById("titulo").value;
-      var conteudo = document.getElementById("conteudo").value;
-
-      try {
-        const response = await fetch('/posts', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ titulo, conteudo })
-        });
-
-        if (response.ok) {
-          const post = await response.json();
-          renderPost(post);
-          mostrarFormulario();
-        } else {
-          console.error('Erro ao criar post');
-        }
-      } catch (error) {
-        console.error('Erro ao criar post:', error);
-      }
-    }
-
-    // Função para renderizar um post no DOM
-    function renderPost(post) {
-      var respostasHTML = post.respostas.map(resposta => `<div class="resposta"><p>${resposta.conteudo}</p></div>`).join('');
-      var postHTML = `
-        <div class="post" id="post-${post._id}">
-          <h2>${post.titulo}</h2>
-          <p>${post.conteudo}</p>
-          <span class="reply-btn" onclick="mostrarFormularioResposta('${post._id}')">Responder</span>
-          <div id="respostas-${post._id}">${respostasHTML}</div>
-        </div>`;
-      document.getElementById("posts").insertAdjacentHTML('afterbegin', postHTML);
-    }
-
-    // Função para enviar uma resposta a um post
-    async function enviarResposta(event) {
-      event.preventDefault();
-      var conteudo = document.getElementById("respostaConteudo").value;
-
-      if (postIdParaResponder && conteudo) {
-        try {
-          const response = await fetch(`/posts/${postIdParaResponder}/responder`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ conteudo })
-          });
-          if (response.ok) {
-            const respostaData = await response.json();
-            var respostaHTML = `<div class="resposta"><p>${respostaData.conteudo}</p></div>`;
-            document.getElementById(`respostas-${postIdParaResponder}`).insertAdjacentHTML('beforeend', respostaHTML);
-            mostrarFormularioResposta();
-          } else {
-            console.error('Erro ao responder post');
-          }
-        } catch (error) {
-          console.error('Erro ao responder post:', error);
-        }
-      }
-    }
-
-    // Carregar os posts do servidor
-    async function carregarPosts() {
-      try {
-        const response = await fetch('/posts');
-        if (response.ok) {
-          const posts = await response.json();
-          posts.forEach(post => renderPost(post));
-        } else {
-          console.error('Erro ao carregar posts');
-        }
-      } catch (error) {
-        console.error('Erro ao carregar posts:', error);
-      }
-    }
-
-    // Carregar os posts ao carregar a página
-    window.onload = carregarPosts;
-  </script>
+    <script src="blog.js"></script>
 </body>
-
 </html>

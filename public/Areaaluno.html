@@ -1,58 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Números nos Trilhos</title>
-    <style>
-        #hero {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-        .hero.container > div {
-            margin: 0 auto;
-        }
-    </style>
+    <title>Login - Matemática no Metrô</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div class="container">
+        <div class="forms-container">
+            <div class="forms-wrapper">
+                <div class="logo">
+                    <h1>Matemática no Metrô</h1>
+                    <p>Area do aluno</p>
+                </div>
+        
+                    <!-- Botão de envio do formulário -->
+                    <!-- Botão que redireciona com JavaScript -->
+<button type="button" onclick="window.location.href='aulas.html'" class="btn">Conteúdos</button>
+<br>
+<br>
+<button type="button" onclick="window.location.href='jogos.html'" class="btn">Jogos</button>
+<br>
+<br>
+<button type="button" onclick="window.location.href='blog.html'" class="btn">FAQ</button>
+<br>
+<br>
+<button type="button" onclick="window.location.href='index.html'" class="btn">Sair</button>
 
-  <section id="header">
-    <div class="header container">
-      <div class="nav-bar">
-        <div class="brand">
-          <a href="#hero">
-            <h1><span>MATEMATICA NO METRO</span></h1>
-          </a>
+        <div class="image-container">
+            <div class="content">
+                <h2>Bem-vindo ao Matemática no Metrô</h2>
+                <p>Transformando o tempo de viagem em conhecimento</p>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
-
-  <section id="hero">
-    <div class="hero container">
-        <div>
-        <h1>Seja bem-vindo<span></span></h1>
-        <br>
-        <h1>Área do Aluno<span></span></h1>
-        <br>
-        <br>
-      <a href="aulas.html" type="button" class="cta">Conteúdos</a>
-      <br>
-      <a href="jogos.html" type="button" class="cta">Jogos</a>
-      <br>
-      <a href="blog.html" type="button" class="cta">FAQ</a>
-      <br>
-      <a href="index.html" type="button" class="cta">Sair</a>
-  
-       
-      </div>
-    </div>
-  </section>
-
-  <script src="./app.js"></script>
 </body>
 </html>

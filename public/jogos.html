@@ -1,13 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogos</title>
+    <title>Jogos - Matemática no Metrô</title>
+    <link rel="stylesheet" href="game.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <h1>Jogos</h1>
-    <p>Bem-vindo à área de jogos!</p>
-    <a href="Areaaluno.html">Voltar</a>
+    <!-- Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <h1>Matemática no Metrô</h1>
+            </div>
+            <div class="nav-actions">
+                <a href="Areaaluno.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Jogos Educativos</h1>
+            <p>Aprenda matemática se divertindo</p>
+        </div>
+    </header>
+
+    <!-- Games Grid -->
+    <main class="games-section">
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h2>Calculadora Mágica</h2>
+                <p>Pratique operações matemáticas básicas</p>
+                <button class="play-btn">Jogar Agora</button>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <h2>Quebra-Cabeça Numérico</h2>
+                <p>Resolva puzzles matemáticos divertidos</p>
+                <button class="play-btn">Jogar Agora</button>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">
+                    <i class="fas fa-train"></i>
+                </div>
+                <h2>Trem da Matemática</h2>
+                <p>Viaje pelos números e operações</p>
+                <button class="play-btn">Jogar Agora</button>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h2>Contra o Tempo</h2>
+                <p>Resolva problemas antes do tempo acabar</p>
+                <button class="play-btn">Em Breve</button>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

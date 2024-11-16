@@ -1,82 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="forms.css">
-  <title>Números nos Trilhos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Matemática no Metrô</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
-  <section id="header">
-    <div class="header container">
-      <div class="nav-bar">
-        <div class="brand">
-          <a href="#hero">
-            <h1><span>MATEMÁTICA NO METRO</span></h1>
-          </a>
+    <div class="container">
+        <div class="forms-container">
+            <div class="forms-wrapper">
+                <div class="logo">
+                    <h1>Matemática no Metrô</h1>
+                    <p>Portal do Aluno</p>
+                </div>
+                
+                <!-- Login Form -->
+                <form id="loginForm" class="form active" action="/login" method="POST">
+                    <h2>Login</h2>
+                    <div class="input-group">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="cpf-login" name="cpf" placeholder="CPF" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password-login" name="password" placeholder="Senha" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    <div class="remember-forgot">
+                        <label>
+                            <input type="checkbox"> Lembrar-me
+                        </label>
+                    </div>
+                    <button type="submit" class="btn">Entrar</button>
+                    <p class="switch-form">
+                        Não tem uma conta? <a href="#" id="showRegister">Cadastre-se</a>
+                    </p>
+                </form>
+
+                <!-- Register Form -->
+                <form id="registerForm" class="form" action="/win.html" method="POST">
+                    <h2>Cadastro</h2>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name-register" name="name" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="cpf-register" name="cpf" placeholder="CPF" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password-register" name="password" placeholder="Senha" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirm-password" placeholder="Confirmar Senha" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    <button type="submit" class="btn">Cadastrar</button>
+                    <p class="switch-form">
+                        Já tem uma conta? <a href="#" id="showLogin">Fazer Login</a>
+                    </p>
+                </form>
+            </div>
         </div>
-        <div class="nav-list">
-          <div class="bar"></div>
-          <li><a href="loginpro.html" class="btn">Area professor</a></li>
+        
+        <div class="image-container">
+            <div class="content">
+                <h2>Bem-vindo ao Matemática no Metrô</h2>
+                <p>Transformando o tempo de viagem em conhecimento</p>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
-  
-  <div class="wrapper">
-    <div class="card-switch">
-      <label class="switch">
-        <input type="checkbox" class="toggle">
-        <span class="slider"></span>
-        <span class="card-side"></span>
-        <div class="flip-card__inner">
-          
-          <!-- Login Form (Front Side) -->
-          <div class="flip-card__front">
-            <div class="title">Portal do Aluno</div>
-            <form class="flip-card__form" action="/login" method="POST">
-              <input class="flip-card__input" name="cpf" id="cpf-login" placeholder="CPF" type="text" required>
-              <input class="flip-card__input" name="password" placeholder="Senha" type="password" required>
-              <button class="flip-card__btn">Entrar</button>
-            </form>
-          </div>
-          
-          <!-- Registration Form (Back Side) -->
-          <div class="flip-card__back">
-            <div class="title">Ainda não tem cadastro?</div>
-            <form class="flip-card__form" action="/win.html" method="POST">
-              <input class="flip-card__input" name="name" placeholder="Nome" type="text" required>
-              <input class="flip-card__input" name="cpf" id="cpf-register" placeholder="CPF" type="text" required>
-              <input class="flip-card__input" name="password" placeholder="Senha" type="password" required>
-              <button class="flip-card__btn">Enviar</button>
-            </form>
-          </div>
-          
-        </div>
-      </label>
-    </div>   
-  </div>
 
-  <script>
-    function formatCPF(cpf) {
-      cpf = cpf.replace(/\D/g, ""); // Remove tudo o que não é dígito
-      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca um ponto entre o terceiro e o quarto dígitos
-      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca um ponto entre o sexto e o sétimo dígitos
-      cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Coloca um hífen entre o nono e o décimo dígitos
-      return cpf;
-    }
-
-    document.getElementById('cpf-login').addEventListener('input', function (e) {
-      e.target.value = formatCPF(e.target.value);
-    });
-
-    document.getElementById('cpf-register').addEventListener('input', function (e) {
-      e.target.value = formatCPF(e.target.value);
-    });
-  </script>
+    <script src="login.js"></script>
 </body>
-
 </html>

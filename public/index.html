@@ -1,107 +1,514 @@
 <!DOCTYPE html>
-<html lang="en">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Números nos Trilhos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática no Metrô</title>
+    <link rel="stylesheet" href="blog.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Matemática no Metrô</h1>
+            </div>
+                <a href="loginpro.html" class="cta-button">Área do Docete</a>
+            </div>
 
-  <section id="header">
-    <div class="header container">
-      <div class="nav-bar">
-        <div class="brand">
-          <a href="#hero">
-            <h1> <span>MATEMATICA NO METRO</span></h1>
-          </a>
         </div>
+    </nav>
 
-            <div class="bar"></div>
-          </div>
-          <ul>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Descubra uma nova forma de<br>aprender matemática!</h1>
+            <p>Uma jornada única de conhecimento nos trilhos do metrô</p>
+            <a href="login.html" class="cta-button">Embarque nessa Jornada!</a>
         </div>
-      </div>
-    </div>
-  </section>
+        <div class="hero-overlay"></div>
+    </section>
 
+    <section id="partners" class="partners">
+        <h2>Nossos Parceiros</h2>
+        <div class="partners-grid">
+            <div class="partner-card">
+                <img src="maua-logo.png" alt="Mauá">
+                <h3>Instituto Mauá</h3>
+                <p>Excelência em Engenharia</p>
+            </div>
+            <div class="partner-card">
+                <img src="metro-logo.png" alt="Metrô">
+                <h3>Metrô de São Paulo</h3>
+                <p>Mobilidade e Educação</p>
+            </div>
+            <div class="partner-card">
+                <img src="engineering-logo.png" alt="Engenharia">
+                <h3>Engenharia Social</h3>
+                <p>Transformação pela Educação</p>
+            </div>
+        </div>
+    </section>
 
+    <section id="project" class="project">
+        <div class="project-content">
+            <h2>O Projeto</h2>
+            <div class="project-grid">
+                <div class="project-info">
+                    <h3>Nossa Missão</h3>
+                    <p>Transformar o tempo de viagem em oportunidade de aprendizado, levando educação matemática de qualidade para todos.</p>
+                </div>
+                <div class="project-stats">
+                    <div class="stat">
+                        <span class="number">500+</span>
+                        <span class="label">Alunos Impactados</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">50+</span>
+                        <span class="label">Professores</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">1000+</span>
+                        <span class="label">Aulas Realizadas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="hero">
-    <div class="hero container">
-      <div>
-        <h1>Descubra uma nova forma de aprender matemática!<span></span></h1>
-        <br>
-        <h1>Matemática no Metrô! <span></span></h1>
-        <br>
-        <a href="login.html" type="button" class="cta">Embarque nessa Jornada de Conhecimento!</a>
-      </div>
-    </div>
-  </section>
-<!-- parceiros -->
-  <section id="services">
-    <div class="services container">
-      <div class="service-top">
-        <h1 class="section-title"><span>Parceiros</span></h1>
-        <p> Maua, engearia e metro obs: colocar fotos</p>
-      </div>
+    <section id="about" class="team">
+        <h2>Quem Somos</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="professor1.jpg" alt="Professor">
+                </div>
+                <h3>Nome do Professor</h3>
+                <p>Especialista em Matemática Aplicada</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <!-- Adicione mais professores conforme necessário -->
+        </div>
+    </section>
 
- <!-- projeto -->
-  <section id="projects">
-    <div class="projects container">
-      <div class="projects-header">
-        <h1 class="section-title"><span>Projeto</span></h1>
-      </div>
-      <div class="all-projects">
-        <div class="project-item">
-          <p> explicar o projeto aki</p>
+    <section id="contact" class="contact">
+        <h2>Entre em Contato</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <p>(11) 1234-5678</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>contato@matematicanometro.com.br</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Rua do Metrô, 123 - São Paulo, SP</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <input type="text" placeholder="Nome" required>
+                    <input type="email" placeholder="E-mail" required>
+                    <textarea placeholder="Mensagem" required></textarea>
+                    <button type="submit" class="cta-button">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-  <!-- Quem somos -->
-  <section id="about">
-    <div class="about container">
-      <div class="col-left">
-    
-      </div>
-      <div class="col-right">
-        <h1 class="section-title">Quem<span> somos</span></h1>
-        <h2>professores</h2>
-        <p> resumo dos professores</p>
-       
-      </div>
-    </div>
-  </section>
+    <section id="donate" class="donate">
+        <h2>Apoie o Projeto</h2>
+        <div class="donate-content">
+            <div class="donate-info">
+                <h3>Faça uma Doação</h3>
+                <p>Ajude-nos a continuar transformando vidas através da educação</p>
+            </div>
+            <div class="donate-qr">
+                <img src="pix-qr.png" alt="QR Code PIX">
+                <p>Escaneie o QR Code para doar via PIX</p>
+            </div>
+        </div>
+    </section>
 
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Matemática no Metrô</h3>
+                <p>Educação em movimento</p>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Matemática no Metrô. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-  <!-- Contanto  -->
-  <section id="contact">
-    <div class="contact container">
-      <div>
-        <h1 class="section-title">Contato <span>info</span></h1>
-      </div>
-      <p>coloar numero de tefone, email e endereco</p>
-  </section>
- 
-  <!-- Doacao -->
-  <section id="donete">
-  <section id="about">
-    <div class="about container">
-      <div class="col-left">
-       
-      </div>
-      <div class="col-right">
-        <h1 class="section-title">Faça <span> Doacao</span></h1>
-        <h2>Ajude o projeto com pix!!</h2>
-        <h2>Colocar um qr pix</h2>
-      </div>
-    </div>
-   
-  </section>
-</section>
-
-  <script src="./app.js"></script>
+    <script src="main.js"></script>
 </body>
+<style>
+  :root {
+    --primary-color: #2196F3;
+    --secondary-color: #1565C0;
+    --accent-color: #FFC107;
+    --text-color: #333;
+    --light-text: #fff;
+    --bg-color: #f5f5f5;
+    --dark-bg: #1a1a1a;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links .cta-button {
+    background: var(--primary-color);
+    color: var(--light-text);
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+}
+
+.nav-links .cta-button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('metro-bg.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--light-text);
+    padding: 2rem;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: var(--light-text);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.cta-button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Partners Section */
+.partners {
+    padding: 5rem 2rem;
+    background: var(--bg-color);
+}
+
+.partners h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.partner-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.partner-card:hover {
+    transform: translateY(-5px);
+}
+
+.partner-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+/* Project Section */
+.project {
+    padding: 5rem 2rem;
+    background: white;
+}
+
+.project-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.project-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat {
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-color);
+    border-radius: 10px;
+}
+
+.number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+}
+
+/* Team Section */
+.team {
+    padding: 5rem 2rem;
+    background: var(--bg-color);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.team-member {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contact Section */
+.contact {
+    padding: 5rem 2rem;
+    background: white;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Donate Section */
+.donate {
+    padding: 5rem 2rem;
+    background: var(--bg-color);
+    text-align: center;
+}
+
+.donate-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.donate-qr {
+    margin-top: 2rem;
+}
+
+.donate-qr img {
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+/* Footer */
+.footer {
+    background: var(--dark-bg);
+    color: var(--light-text);
+    padding: 3rem 2rem 1rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: var(--light-text);
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .project-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </html>

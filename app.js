@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const app = express();
+const excel = require('exceljs');
 
 // Configurar conexão com MongoDB, especificando o banco de dados 'usuários'
 const mongoURI = 'mongodb+srv://ROTHMATH:EmUmsXxv6k7GPLu9@math.vplgf.mongodb.net/usuarios?retryWrites=true&w=majority&appName=MATH';
@@ -19,14 +20,15 @@ app.use(cookieParser());
 
 // Definir o esquema do usuário para estudantes
 const studentSchema = new mongoose.Schema({
-  cpf: { type: String, unique: true }, // CPF agora é a chave única
-  password: String // Em um ambiente real, você deve armazenar senhas hashadas
+  name: String,
+  cpf: { type: String, unique: true },
+  password: String
 });
 
-// Definir o esquema do professor
 const professorSchema = new mongoose.Schema({
-  cpf: { type: String, unique: true }, // CPF também como chave única
-  password: String // Em um ambiente real, você deve armazenar senhas hashadas
+  name: String,
+  cpf: { type: String, unique: true },
+  password: String
 });
 
 // Definir o esquema de acesso
@@ -35,10 +37,24 @@ const acessoSchema = new mongoose.Schema({
   professor: Boolean
 });
 
-// Definir os modelos para as coleções 'ALUNOS', 'PROFESSORES' e 'ACESSO'
+// Definir o esquema de presença
+const attendanceSchema = new mongoose.Schema({
+  studentId: mongoose.Schema.Types.ObjectId,
+  studentName: String,
+  cpf: String,
+  subject: String,
+  date: Date,
+  dayOfWeek: String,
+  hours: String,
+  observation: String,
+  grade: Number
+});
+
+// Definir os modelos para as coleções 'ALUNOS', 'PROFESSORES', 'ACESSO' e 'PRESENCA'
 const Student = mongoose.model('Student', studentSchema, 'ALUNOS');
 const Professor = mongoose.model('Professor', professorSchema, 'PROFESSORES');
 const Acesso = mongoose.model('Acesso', acessoSchema, 'ACESSO');
+const Attendance = mongoose.model('Attendance', attendanceSchema, 'PRESENCA');
 
 // Middleware de autenticação
 function authMiddleware(req, res, next) {
@@ -49,20 +65,18 @@ function authMiddleware(req, res, next) {
   next();
 }
 
-// Rota de cadastro de aluno (com CPF e senha)
+// Rota de cadastro de aluno
 app.post('/win.html', async (req, res) => {
-  const { cpf, password } = req.body;
+  const { name, cpf, password } = req.body;
   try {
-    // Verificar se o CPF já está registrado na coleção ALUNOS
     const existingStudent = await Student.findOne({ cpf });
     if (existingStudent) {
-      return res.redirect('/cpf2x.html'); // Redirecionar para cpf2x.html se o CPF já estiver em uso
+      return res.redirect('/cpf2x.html');
     }
 
-    // Criar um novo aluno na coleção ALUNOS
-    const student = new Student({ cpf, password });
+    const student = new Student({ name, cpf, password });
     await student.save();
-    res.redirect('/win.html'); // Redirecionar para win.html
+    res.redirect('/win.html');
   } catch (err) {
     console.error('Erro ao cadastrar aluno:', err);
     res.redirect('/erro.html');
@@ -71,8 +85,8 @@ app.post('/win.html', async (req, res) => {
 
 // Rota de cadastro de professor (com verificação de acesso)
 app.post('/winpro.html', async (req, res) => {
-  const { cpf, password } = req.body;
-  console.log('Tentativa de cadastro de professor:', { cpf, password });
+  const { name, cpf, password } = req.body;
+  console.log('Tentativa de cadastro de professor:', { name, cpf, password });
   try {
     // Verificar se o CPF está na coleção ACESSO
     const acesso = await Acesso.findOne({ cpf });
@@ -89,7 +103,7 @@ app.post('/winpro.html', async (req, res) => {
     }
 
     // Criar um novo professor na coleção PROFESSORES
-    const professor = new Professor({ cpf, password });
+    const professor = new Professor({ name, cpf, password });
     await professor.save();
     console.log('Professor cadastrado com sucesso:', professor);
     res.redirect('/winpro.html'); // Redirecionar para winpro.html
@@ -141,9 +155,47 @@ app.get('/areaprofessor.html', authMiddleware, (req, res) => {
 // Servir arquivos estáticos da pasta 'public'
 app.use(express.static('./public'));
 
-// Servir o arquivo aulas.html
-app.get('/aulas.html', (req, res) => {
-  res.sendFile(__dirname + '/public/aulas.html');
+
+
+
+// Rota para baixar dados de presença
+app.get('/alunos/presenca/download', async (req, res) => {
+  try {
+    const attendances = await Attendance.find().populate('studentId');
+    const workbook = new excel.Workbook();
+    const worksheet = workbook.addWorksheet('Presenças');
+
+    worksheet.columns = [
+      { header: 'Nome do Aluno', key: 'name', width: 30 },
+      { header: 'CPF', key: 'cpf', width: 20 },
+      { header: 'Matéria', key: 'subject', width: 30 },
+      { header: 'Data da Aula', key: 'date', width: 15 },
+      { header: 'Horas', key: 'hours', width: 10 },
+      { header: 'Observação', key: 'observation', width: 30 },
+      { header: 'Nota', key: 'grade', width: 10 }
+    ];
+
+    attendances.forEach(attendance => {
+      worksheet.addRow({
+        name: attendance.studentId ? attendance.studentId.name : '',
+        cpf: attendance.studentId ? attendance.studentId.cpf : '',
+        subject: attendance.subject,
+        date: attendance.date,
+        hours: attendance.hours,
+        observation: attendance.observation,
+        grade: attendance.grade
+      });
+    });
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=presencas.xlsx');
+
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    console.error('Erro ao baixar dados de presença:', err);
+    res.status(500).json({ error: 'Erro ao baixar dados de presença' });
+  }
 });
 
 // Configuração do servidor
@@ -178,7 +230,6 @@ app.post('/posts', async (req, res) => {
     res.status(500).json({ error: 'Erro ao criar post' });
   }
 });
-
 // Rota para listar todos os posts
 app.get('/posts', async (req, res) => {
   try {
@@ -189,7 +240,6 @@ app.get('/posts', async (req, res) => {
     res.status(500).json({ error: 'Erro ao obter posts' });
   }
 });
-
 // Rota para deletar um post
 app.delete('/posts/:id', async (req, res) => {
   const { id } = req.params;
@@ -283,7 +333,7 @@ app.delete('/conteudos/:id', async (req, res) => {
   }
 });
 
-// Rota para buscar aluno pelo CPF
+// Rota para buscar aluno pelo CPFnpm install exceljs
 app.get('/buscar-aluno/:cpf', async (req, res) => {
   const { cpf } = req.params;
   try {
@@ -299,30 +349,70 @@ app.get('/buscar-aluno/:cpf', async (req, res) => {
   }
 });
 
-// Definir o esquema de presença
-const presencaSchema = new mongoose.Schema({
-  cpf: String,
-  materias: String,
-  diaSemana: String,
-  horaEntrada: String,
-  horaSaida: String,
-  idade: Number,
-  data: { type: Date, default: Date.now }
-});
+/* ========================================= */
 
-// Definir o modelo para a coleção 'PRESENCAS'
-const Presenca = mongoose.model('Presenca', presencaSchema, 'PRESENCAS');
-
-// Rota para registrar presença
-app.post('/registrar-presenca', async (req, res) => {
-  const { cpf, materias, diaSemana, horaEntrada, horaSaida, idade, instituicao } = req.body;
-
+// Rota para listar todos os alunos
+app.get('/alunos', async (req, res) => {
   try {
-    const novaPresenca = new Presenca({ cpf, materias, diaSemana, horaEntrada, horaSaida, idade, instituicao });
-    await novaPresenca.save();
-    res.status(201).json({ message: 'Presença registrada com sucesso' });
+    const alunos = await Student.find();
+    res.json(alunos);
   } catch (err) {
-    console.error('Erro ao registrar presença:', err);
-    res.status(500).json({ error: 'Erro ao registrar presença' });
+    console.error('Erro ao listar alunos:', err);
+    res.status(500).json({ error: 'Erro ao listar alunos' });
   }
 });
+
+// Rota para alterar a senha de um aluno
+app.put('/alunos/:id/alterar-senha', async (req, res) => {
+  const { id } = req.params;
+  const { novaSenha } = req.body;
+
+  try {
+    const aluno = await Student.findById(id);
+    if (!aluno) {
+      return res.status(404).json({ error: 'Aluno não encontrado' });
+    }
+    aluno.password = novaSenha;
+    await aluno.save();
+    res.status(200).json({ message: 'Senha alterada com sucesso' });
+  } catch (err) {
+    console.error('Erro ao alterar senha:', err);
+    res.status(500).json({ error: 'Erro ao alterar senha' });
+  }
+});
+
+// Rota para deletar um aluno
+app.delete('/alunos/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const aluno = await Student.findByIdAndDelete(id);
+    if (!aluno) {
+      return res.status(404).json({ error: 'Aluno não encontrado' });
+    }
+    res.status(200).json({ message: 'Aluno deletado com sucesso' });
+  } catch (err) {
+    console.error('Erro ao deletar aluno:', err);
+    res.status(500).json({ error: 'Erro ao deletar aluno' });
+  }
+});
+
+// Rota para buscar alunos pelo nome ou CPF
+app.get('/buscar-aluno', async (req, res) => {
+  const { query } = req.query;
+  try {
+    const alunos = await Student.find({
+      $or: [
+        { name: { $regex: query, $options: 'i' } },
+        { cpf: { $regex: query, $options: 'i' } }
+      ]
+    });
+    res.json(alunos);
+  } catch (err) {
+    console.error('Erro ao buscar alunos:', err);
+    res.status(500).json({ error: 'Erro ao buscar alunos' });
+  }
+});
+
+/* ================= */
+
