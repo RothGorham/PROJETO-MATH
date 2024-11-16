@@ -129,9 +129,9 @@ app.post('/login', async (req, res) => {
       res.cookie('sessionId', user._id, { httpOnly: true });
       
       if (user instanceof Student) {
-        return res.redirect('/areaaluno.html'); // Redirecionar para área de aluno
+        return res.redirect('/Areaaluno.html'); // Redirecionar para área de aluno
       } else {
-        return res.redirect('/areaprofessor.html'); // Redirecionar para área de professor
+        return res.redirect('/Areaprofessor.html'); // Redirecionar para área de professor
       }
     }
 
@@ -144,13 +144,13 @@ app.post('/login', async (req, res) => {
 });
 
 // Rota protegida para área de aluno
-app.get('/areaaluno.html', authMiddleware, (req, res) => {
-  res.sendFile(__dirname + '/public/areaaluno.html');
+app.get('/Areaaluno.html', authMiddleware, (req, res) => {
+  res.sendFile(__dirname + '/public/Areaaluno.html');
 });
 
 // Rota protegida para área de professor
-app.get('/areaprofessor.html', authMiddleware, (req, res) => {
-  res.sendFile(__dirname + '/public/areaprofessor.html');
+app.get('/Areaprofessor.html', authMiddleware, (req, res) => {
+  res.sendFile(__dirname + '/public/Areaprofessor.html');
 });
 
 // Servir arquivos estáticos da pasta 'public'
