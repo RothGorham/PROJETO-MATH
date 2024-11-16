@@ -1,18 +1,49 @@
+Aqui está o README ajustado para mais clareza, formatação e precisão:
+
+---
 
 # Matemática no Metro
-Matemática no Metro é um projeto que quer mostrar que aprender matemática pode ser interessante, divertido e acessível para todos. O coração do projeto é a estação Sacomã do metrô de São Paulo, onde transformamos o espaço em um ponto de encontro para quem deseja explorar o mundo dos números de um jeito diferente. Com o nosso sistema online, os alunos terão acesso a conteúdos para estudar em casa, onde poderão explorar diversos materiais, jogar jogos educativos que tornam o aprendizado mais divertido e interagir com outros colegas e professores em um blog dedicado à troca de ideias sobre matemática. Além disso, terão a oportunidade de praticar e testar seus conhecimentos com exercícios desafiadores que ajudam a consolidar o aprendizado.
 
-# Visão Geral
-O projeto busca promover a matemática de maneira divertida e engajante, conectando alunos, professores e a comunidade através de atividades interativas no metrô de São Paulo.
+**Matemática no Metro** é um projeto que transforma o aprendizado de matemática em uma experiência interessante, divertida e acessível para todos. No centro deste projeto está a estação Sacomã do metrô de São Paulo, um local convertido em um ponto de encontro para quem deseja explorar o mundo dos números de forma diferente. Por meio de nosso sistema online, os alunos terão acesso a uma ampla gama de conteúdos para estudar em casa. Os materiais incluem jogos educativos que tornam o aprendizado mais dinâmico, um blog para interação com colegas e professores, e exercícios desafiadores para testar e consolidar conhecimentos.
 
-# Funcionalidades Principais
-Portal do Professor: Área dedicada para professores, com funcionalidades para gerenciar conteúdos e acessar informações sobre os alunos.
-Portal do Aluno: Área dedicada para os alunos, com acesso a exercícios, jogos educativos e vídeos.
-RPG Temático de Matemática: Um jogo interativo baseado nas linhas do metrô, onde cada fase corresponde a uma matéria de matemática básica.
-Sistema de Presença: Registro de presenças com consulta de históricos diários e totais, além de exportação para planilhas Excel.
-Campanhas e Doações: Landing Page especial para campanhas de doação, com integração para receber contribuições via QR Code para PIX.
+---
 
-# Tecnologias Utilizadas
-Frontend: HTML, CSS, JavaScript
-Backend: Node.js com Express
-Banco de Dados: MongoDB com Mongoose
+## Visão Geral
+
+O projeto visa promover a matemática de forma divertida e envolvente, conectando alunos, professores e a comunidade através de atividades interativas na estação de metrô de São Paulo.
+
+---
+
+## Funcionalidades Principais
+
+- **Portal do Professor**  
+  Área dedicada para professores, com funcionalidades de gerenciamento de conteúdos e acesso a informações sobre os alunos.
+
+- **Portal do Aluno**  
+  Área dedicada para os alunos, com acesso a exercícios, jogos educativos, vídeos e materiais interativos.
+
+- **RPG Temático de Matemática**  
+  Um jogo interativo baseado nas linhas do metrô, em que cada fase corresponde a uma matéria de matemática básica, proporcionando um aprendizado envolvente e imersivo.
+![Matemática no Metro](rpg.png)
+
+- **Sistema de Presença**  
+  Registro de presenças com histórico diário e total, além de funcionalidade para exportar os dados para planilhas em formato Excel.
+
+- **Doações**  
+  Contribuições via QR Code para ajudar o projeto.
+
+---
+
+## Tecnologias Utilizadas
+
+- **Frontend**  
+  HTML, CSS, JavaScript
+
+- **Backend**  
+  Node.js com Express
+
+- **Banco de Dados**  
+  MongoDB com Mongoose
+
+---
+
