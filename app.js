@@ -47,7 +47,8 @@ const attendanceSchema = new mongoose.Schema({
   dayOfWeek: String,
   hours: String,
   observation: String,
-  grade: Number
+  grade: Number,
+  professorName: String // Novo campo para o nome do professor
 });
 
 // Definir os modelos para as coleções 'ALUNOS', 'PROFESSORES', 'ACESSO' e 'PRESENCA'
@@ -155,35 +156,37 @@ app.get('/areaprofessor.html', authMiddleware, (req, res) => {
 // Servir arquivos estáticos da pasta 'public'
 app.use(express.static('./public'));
 
-git add .git add .
 
 
-// Rota para baixar dados de presença
-app.get('/alunos/presenca/download', async (req, res) => {
+app.get('/attendance/download', async (req, res) => {
   try {
-    const attendances = await Attendance.find().populate('studentId');
+    const attendances = await Attendance.find();
     const workbook = new excel.Workbook();
     const worksheet = workbook.addWorksheet('Presenças');
 
     worksheet.columns = [
-      { header: 'Nome do Aluno', key: 'name', width: 30 },
+      { header: 'Nome do Aluno', key: 'studentName', width: 30 },
       { header: 'CPF', key: 'cpf', width: 20 },
       { header: 'Matéria', key: 'subject', width: 30 },
       { header: 'Data da Aula', key: 'date', width: 15 },
+      { header: 'Dia da Semana', key: 'dayOfWeek', width: 15 },
       { header: 'Horas', key: 'hours', width: 10 },
       { header: 'Observação', key: 'observation', width: 30 },
-      { header: 'Nota', key: 'grade', width: 10 }
+      { header: 'Nota', key: 'grade', width: 10 },
+      { header: 'Nome do Professor', key: 'professorName', width: 30 } // Novo campo para o nome do professor
     ];
 
     attendances.forEach(attendance => {
       worksheet.addRow({
-        name: attendance.studentId ? attendance.studentId.name : '',
-        cpf: attendance.studentId ? attendance.studentId.cpf : '',
+        studentName: attendance.studentName,
+        cpf: attendance.cpf,
         subject: attendance.subject,
         date: attendance.date,
+        dayOfWeek: attendance.dayOfWeek,
         hours: attendance.hours,
         observation: attendance.observation,
-        grade: attendance.grade
+        grade: attendance.grade,
+        professorName: attendance.professorName // Incluir o nome do professor
       });
     });
 
@@ -197,7 +200,6 @@ app.get('/alunos/presenca/download', async (req, res) => {
     res.status(500).json({ error: 'Erro ao baixar dados de presença' });
   }
 });
-
 // Configuração do servidor
 const port = 3004;
 app.listen(port, () => {
@@ -416,3 +418,107 @@ app.get('/buscar-aluno', async (req, res) => {
 
 /* ================= */
 
+// Rota para deletar todos os conteúdos
+app.delete('/conteudos', async (req, res) => {
+  try {
+    await Conteudo.deleteMany({});
+    res.status(200).json({ message: 'Todos os conteúdos foram apagados com sucesso' });
+  } catch (err) {
+    console.error('Erro ao apagar todos os conteúdos:', err);
+    res.status(500).json({ error: 'Erro ao apagar todos os conteúdos' });
+  }
+});
+
+
+app.post('/attendance', async (req, res) => {
+  const { studentId, subject, date, dayOfWeek, hours, grade, observation, professorName } = req.body;
+  try {
+    const student = await Student.findById(studentId);
+    if (!student) {
+      return res.status(404).json({ error: 'Aluno não encontrado' });
+    }
+
+    const attendance = new Attendance({
+      studentId,
+      studentName: student.name,
+      cpf: student.cpf,
+      subject,
+      date,
+      dayOfWeek,
+      hours,
+      grade,
+      observation,
+      professorName // Incluir o nome do professor
+    });
+
+    await attendance.save();
+    res.status(201).json(attendance);
+  } catch (err) {
+    console.error('Erro ao registrar presença:', err);
+    res.status(500).json({ error: 'Erro ao registrar presença' });
+  }
+});
+
+// Função para buscar presenças detalhadas
+async function fetchAttendanceDetails() {
+  try {
+    const response = await fetch('/attendance/details');
+    if (response.ok) {
+      const attendances = await response.json();
+      renderAttendanceDetails(attendances);
+    } else {
+      console.error('Erro ao buscar presenças detalhadas');
+    }
+  } catch (error) {
+    console.error('Erro ao buscar presenças detalhadas:', error);
+  }
+}
+
+// Função para renderizar presenças detalhadas
+function renderAttendanceDetails(attendances) {
+  const container = document.getElementById('attendanceDetailsContainer');
+  container.innerHTML = '';
+  attendances.forEach(attendance => {
+    const attendanceElement = document.createElement('div');
+    attendanceElement.className = 'attendance-card';
+    attendanceElement.innerHTML = `
+      <h3>Nome: ${attendance.studentName}</h3>
+      <p>CPF: ${attendance.cpf}</p>
+      <p>Data: ${new Date(attendance.date).toLocaleDateString()}</p>
+      <p>Hora: ${attendance.hours}</p>
+      <p>Observação: ${attendance.observation}</p>
+      <p>Nota: ${attendance.grade}</p>
+    `;
+    container.appendChild(attendanceElement);
+  });
+}
+
+
+// Rota para deletar todos os alunos
+app.delete('/students', async (req, res) => {
+  try {
+    await Student.deleteMany({});
+    res.status(200).json({ message: 'Todos os alunos foram excluídos com sucesso' });
+  } catch (err) {
+    console.error('Erro ao excluir todos os alunos:', err);
+    res.status(500).json({ error: 'Erro ao excluir todos os alunos' });
+  }
+});
+
+// Rota para adicionar professor ao banco de dados
+app.post('/acesso', async (req, res) => {
+  const { cpf } = req.body;
+  try {
+    const existingAccess = await Acesso.findOne({ cpf });
+    if (existingAccess) {
+      return res.status(400).json({ error: 'Professor já existe' });
+    }
+
+    const acesso = new Acesso({ cpf, professor: true });
+    await acesso.save();
+    res.status(201).json(acesso);
+  } catch (err) {
+    console.error('Erro ao adicionar professor:', err);
+    res.status(500).json({ error: 'Erro ao adicionar professor' });
+  }
+});
