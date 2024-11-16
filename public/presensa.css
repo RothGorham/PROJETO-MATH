@@ -1,10 +1,10 @@
-/* Reset and Base Styles */
+SIETEMA DE PRESENCA MEIO APAGADO 
 :root {
   --primary-color: #ff0044;
   --background-dark: #242424;
-  --card-background: #424242;
-  --text-light: #ffffff;
-  --text-gray: #888888;
+  --card-background: #000000;
+  --text-light: #ffffff00;
+  --text-gray: #ffffff;
 }
 
 * {
