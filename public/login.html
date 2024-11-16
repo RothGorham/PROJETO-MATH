@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="forms.css">
   <title>Números nos Trilhos</title>
 </head>
 
 <body>
-  <!-- Header -->
   <section id="header">
     <div class="header container">
       <div class="nav-bar">
@@ -19,39 +19,64 @@
           </a>
         </div>
         <div class="nav-list">
-          <div class="hamburger">
-            <div class="bar"></div>
-          </div>
-          <ul>
-            <li><a href="index.html" data-after="Home">Home</a></li>
-            <li><a href="Cadastro.html" data-after="About">Crie sua conta grátis</a></li>
-          </ul>
+          <div class="bar"></div>
+          <li><a href="loginpro.html" class="btn">Area professor</a></li>
         </div>
       </div>
     </div>
   </section>
-  <!-- End Header -->
-  <div class="container">
-    <div class="card">
-      <a class="login">Log in</a>
-      <form id="loginForm" action="/login" method="POST">
-        <div class="inputBox" style="margin-bottom: 15px;">
-          <input type="text" id="username" name="username" required="required">
-          <span class="user">Username</span>
-        </div>
   
-        <div class="inputBox" style="margin-bottom: 15px;">
-          <input type="password" id="password" name="password" required="required">
-          <span>Password</span>
+  <div class="wrapper">
+    <div class="card-switch">
+      <label class="switch">
+        <input type="checkbox" class="toggle">
+        <span class="slider"></span>
+        <span class="card-side"></span>
+        <div class="flip-card__inner">
+          
+          <!-- Login Form (Front Side) -->
+          <div class="flip-card__front">
+            <div class="title">Portal do Aluno</div>
+            <form class="flip-card__form" action="/login" method="POST">
+              <input class="flip-card__input" name="cpf" id="cpf-login" placeholder="CPF" type="text" required>
+              <input class="flip-card__input" name="password" placeholder="Senha" type="password" required>
+              <button class="flip-card__btn">Entrar</button>
+            </form>
+          </div>
+          
+          <!-- Registration Form (Back Side) -->
+          <div class="flip-card__back">
+            <div class="title">Ainda não tem cadastro?</div>
+            <form class="flip-card__form" action="/win.html" method="POST">
+              <input class="flip-card__input" name="name" placeholder="Nome" type="text" required>
+              <input class="flip-card__input" name="cpf" id="cpf-register" placeholder="CPF" type="text" required>
+              <input class="flip-card__input" name="password" placeholder="Senha" type="password" required>
+              <button class="flip-card__btn">Enviar</button>
+            </form>
+          </div>
+          
         </div>
-  
-        <button type="submit" class="enter">Enter</button>
-      </form>
-    </div>
+      </label>
+    </div>   
   </div>
-  
-  <!-- End Footer -->
-  <script src="./app.js"></script>
+
+  <script>
+    function formatCPF(cpf) {
+      cpf = cpf.replace(/\D/g, ""); // Remove tudo o que não é dígito
+      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca um ponto entre o terceiro e o quarto dígitos
+      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca um ponto entre o sexto e o sétimo dígitos
+      cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Coloca um hífen entre o nono e o décimo dígitos
+      return cpf;
+    }
+
+    document.getElementById('cpf-login').addEventListener('input', function (e) {
+      e.target.value = formatCPF(e.target.value);
+    });
+
+    document.getElementById('cpf-register').addEventListener('input', function (e) {
+      e.target.value = formatCPF(e.target.value);
+    });
+  </script>
 </body>
 
 </html>

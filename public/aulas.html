@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blogs.css">
+  <title>Números nos Trilhos</title>
+
+  <style>
+    /* Estilo básico para o modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Estilo para centralizar o conteúdo do modal */
+    .modal-content select, .modal-content button {
+      margin-top: 15px;
+    }
+
+    /* Estilo do conteúdo e do botão Apagar */
+    .conteudo {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para o efeito de elevação */
+      transition: all 0.3s ease;
+      width: 100%; /* Largura total do container */
+      box-sizing: border-box; /* Inclui padding e border no tamanho total */
+    }
+
+    .conteudo:hover {
+      transform: translateY(-5px); /* Elevação no hover */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Aumentar a sombra no hover */
+    }
+
+    .delete-container {
+      margin-top: 10px;
+    }
+
+    .delete-btn {
+      color: red;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      display: block;
+      text-align: right;
+    }
+
+    /* Organização dos conteúdos em uma coluna */
+    #conteudos {
+      display: flex;
+      flex-direction: column; /* Alinhamento em coluna */
+      gap: 20px; /* Espaço entre os blocos */
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero">
+            <h1><span>MATEMÁTICA NO METRO</span></h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        <h1>Conteúdos<span></span></h1>
+        <br>
+        <h1>Bons Estudos<span></span></h1>
+        <br>
+        <a href="Areaaluno.html" type="button" class="cta">Voltar</a>
+        <br><br>
+        <!-- Botão para abrir o modal -->
+        <button class="cta" onclick="abrirModal()">Filtrar Categoria</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal para selecionar a categoria -->
+  <div id="categoriaModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <h2>Selecione a Categoria</h2>
+      <select id="categoriaSelectModal" name="categoriaSelectModal">
+        <option value="todas">Todas</option>
+        <option value="videos">Vídeos</option>
+        <option value="exercicios">Exercícios</option>
+        <option value="materia">Matéria</option>
+        <option value="avisos">Avisos</option>
+      </select>
+      <br><br>
+      <button type="button" class="cta" onclick="filtrarPorCategoria()">Filtrar</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <section id="main">
+    <div class="main container">
+      <!-- Área de conteúdos -->
+      <div id="conteudos">
+        <!-- Os conteúdos aparecerão aqui -->
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Função para abrir o modal
+    function abrirModal() {
+      document.getElementById('categoriaModal').style.display = 'flex';
+    }
+
+    // Função para fechar o modal
+    function fecharModal() {
+      document.getElementById('categoriaModal').style.display = 'none';
+    }
+
+    // Função para filtrar conteúdos com base na categoria selecionada no modal
+    function filtrarPorCategoria() {
+      const categoria = document.getElementById('categoriaSelectModal').value;
+      fecharModal(); // Fecha o modal após a seleção
+      carregarConteudos(categoria); // Carrega os conteúdos com base na categoria selecionada
+    }
+
+    // Função para renderizar um conteúdo no DOM
+    function renderConteudo(conteudo) {
+      var conteudoHTML = `
+        <div class="conteudo" id="conteudo-${conteudo._id}">
+          <h2>${conteudo.titulo}</h2>
+          <p>${conteudo.descricao}</p>
+          <a href="${conteudo.link}" target="_blank">${conteudo.link}</a>
+        </div>`;
+      document.getElementById("conteudos").insertAdjacentHTML('afterbegin', conteudoHTML);
+    }
+
+    // Função para limpar a área de conteúdos
+    function limparConteudos() {
+      document.getElementById("conteudos").innerHTML = "";
+    }
+
+    // Função para carregar e filtrar conteúdos
+    async function carregarConteudos(categoria = 'todas') {
+      try {
+        const response = await fetch('/conteudos');
+        if (response.ok) {
+          const conteudos = await response.json();
+          limparConteudos();
+
+          // Filtrar os conteúdos pela categoria selecionada
+          const conteudosFiltrados = categoria === 'todas' 
+            ? conteudos 
+            : conteudos.filter(conteudo => conteudo.categoria === categoria);
+
+          conteudosFiltrados.forEach(conteudo => renderConteudo(conteudo));
+        } else {
+          console.error('Erro ao carregar conteúdos');
+        }
+      } catch (error) {
+        console.error('Erro ao carregar conteúdos:', error);
+      }
+    }
+
+    // Carregar todos os conteúdos ao carregar a página
+    window.onload = () => carregarConteudos();
+  </script>
+</body>
+
+</html>

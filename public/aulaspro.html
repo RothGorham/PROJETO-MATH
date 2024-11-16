@@ -1,0 +1,342 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Números nos Trilhos - Conteúdos</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero">
+            <h1><span>MATEMÁTICA NO METRO</span></h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        <h1>Seja Bem-vindo<span></span></h1>
+        <br>
+        <h1>Adicionar Novo Conteúdo <span></span></h1>
+        <br>
+        <a href="Areaprofessor.html" type="button" class="cta">Voltar</a>
+        <br>
+        <a onclick="mostrarFormularioConteudo()" class="cta">Criar novo conteúdo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section id="main">
+    <div class="main container">
+      <!-- Área de conteúdos -->
+      <div id="conteudos">
+        <!-- Os conteúdos aparecerão aqui -->
+      </div>
+    </div>
+  </section>
+
+<!-- Modal para criar novo conteúdo -->
+<div id="conteudoModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" onclick="mostrarFormularioConteudo()">&times;</span>
+    <h2>Criar Novo Conteúdo</h2>
+    <br>
+    <form onsubmit="criarConteudo(event)">
+      <div class="form-group">
+        <label for="tituloConteudo">Título:</label>
+        <input type="text" id="tituloConteudo" name="tituloConteudo" required>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="descricaoConteudo">Descrição:</label>
+        <textarea id="descricaoConteudo" name="descricaoConteudo" rows="10" required></textarea>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="categoriaConteudo">Categoria:</label>
+        <select id="categoriaConteudo" name="categoriaConteudo" onchange="toggleLinkOption()" required>
+          <option value="videos">Vídeos</option>
+          <option value="exercicios">Exercícios</option>
+          <option value="materia">Matéria</option>
+          <option value="avisos">Avisos</option>
+        </select>
+      </div>
+      <br>
+
+      <!-- Checkbox para decidir se vai adicionar o link ou não -->
+      <div class="form-group" id="linkOption" style="display: none;">
+        <label for="addLinkCheckbox">
+          <input type="checkbox" id="addLinkCheckbox" onclick="toggleLinkField()">
+          Deseja adicionar um link?
+        </label>
+      </div>
+      <br>      
+      <!-- Campo de link -->
+      <div class="form-group">
+        <label for="linkConteudo">Link:</label>
+        <input type="url" id="linkConteudo" name="linkConteudo" disabled>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <button type="submit" class="playstore-button">
+          <span class="texts">
+            <span class="text-2">Publicar</span>
+          </span>
+        </button>
+        <button type="button" class="playstore-button" onclick="mostrarFormularioConteudo()">
+          <span class="texts">
+            <span class="text-2">Cancelar</span>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Função para mostrar ou ocultar a opção de link dependendo da categoria
+  function toggleLinkOption() {
+    const categoriaSelect = document.getElementById('categoriaConteudo');
+    const linkOption = document.getElementById('linkOption');
+    const linkField = document.getElementById('linkConteudo');
+    const addLinkCheckbox = document.getElementById('addLinkCheckbox');
+
+    // Se a categoria for "Avisos", mostrar a opção de adicionar link
+    if (categoriaSelect.value === 'avisos') {
+      linkOption.style.display = 'block'; // Mostrar o checkbox
+      linkField.disabled = true; // Desativar o campo de link por padrão
+      linkField.required = false; // Não é obrigatório
+      addLinkCheckbox.checked = false; // Checkbox não marcado
+    } else {
+      linkOption.style.display = 'none'; // Esconder o checkbox
+      linkField.disabled = false; // Ativar o campo de link
+      linkField.required = true;  // Definir como obrigatório
+    }
+  }
+
+  // Função para ativar/desativar o campo de link quando o checkbox é marcado
+  function toggleLinkField() {
+    const linkField = document.getElementById('linkConteudo');
+    const addLinkCheckbox = document.getElementById('addLinkCheckbox');
+
+    if (addLinkCheckbox.checked) {
+      linkField.disabled = false; // Ativar o campo de link
+      linkField.required = true;  // Definir como obrigatório
+    } else {
+      linkField.value = ''; // Limpar o campo de link
+      linkField.disabled = true; // Desativar o campo de link
+      linkField.required = false; // Remover a obrigatoriedade
+    }
+  }
+</script>
+
+
+<style>
+  /* From Uiverse.io by Yaya12085 */ 
+.playstore-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 1);
+  padding: 0.625rem 1.5rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  outline: 0;
+  transition: all .2s ease;
+  text-decoration: none;
+}
+
+.playstore-button:hover {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 1);
+}
+
+.icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.texts {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.text-1 {
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-2 {
+  font-weight: 600;
+}
+
+</style>
+
+  <!-- Footer -->
+  <section id="footer">
+    <div class="footer container">
+      <p>&copy; 2024 Conteúdos Educativos</p>
+    </div>
+  </section>
+
+  <script>
+    // Função para exibir/ocultar o modal de criação de conteúdo
+    function mostrarFormularioConteudo() {
+      var modal = document.getElementById("conteudoModal");
+      modal.style.display = modal.style.display === "none" ? "flex" : "none";
+    }
+  
+    // Função para criar um novo conteúdo
+    async function criarConteudo(event) {
+      event.preventDefault();
+      var titulo = document.getElementById("tituloConteudo").value;
+      var descricao = document.getElementById("descricaoConteudo").value;
+      var link = document.getElementById("linkConteudo").value;
+      var categoria = document.getElementById("categoriaConteudo").value; // Capturar o valor da categoria
+  
+      try {
+        const response = await fetch('/conteudos', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ titulo, descricao, link, categoria }) // Incluir a categoria no corpo da requisição
+        });
+  
+        if (response.ok) {
+          const conteudo = await response.json();
+          renderConteudo(conteudo);
+          mostrarFormularioConteudo();
+        } else {
+          console.error('Erro ao criar conteúdo');
+        }
+      } catch (error) {
+        console.error('Erro ao criar conteúdo:', error);
+      }
+    }
+  
+    // Função para renderizar um conteúdo no DOM
+    function renderConteudo(conteudo) {
+      var conteudoHTML = `
+        <div class="conteudo" id="conteudo-${conteudo._id}">
+          <h2>${conteudo.titulo}</h2>
+          <p>${conteudo.descricao}</p>
+          <a href="${conteudo.link}" target="_blank">${conteudo.link}</a>
+          <div class="delete-container">
+            <span class="delete-btn" onclick="deletarConteudo('${conteudo._id}')">Apagar</span>
+          </div>
+        </div>`;
+      document.getElementById("conteudos").insertAdjacentHTML('afterbegin', conteudoHTML);
+    }
+  
+    // Função para deletar um conteúdo sem confirmação
+    async function deletarConteudo(conteudoId) {
+      try {
+        const response = await fetch(`/conteudos/${conteudoId}`, { method: 'DELETE' });
+        if (response.ok) {
+          document.getElementById(`conteudo-${conteudoId}`).remove();
+        } else {
+          console.error('Erro ao apagar conteúdo');
+        }
+      } catch (error) {
+        console.error('Erro ao apagar conteúdo:', error);
+      }
+    }
+  
+    // Carregar os conteúdos do servidor
+    async function carregarConteudos() {
+      try {
+        const response = await fetch('/conteudos');
+        if (response.ok) {
+          const conteudos = await response.json();
+          conteudos.forEach(conteudo => renderConteudo(conteudo));
+        } else {
+          console.error('Erro ao carregar conteúdos');
+        }
+      } catch (error) {
+        console.error('Erro ao carregar conteúdos:', error);
+      }
+    }
+  
+    // Carregar os conteúdos ao carregar a página
+    window.onload = carregarConteudos;
+  </script>
+
+  <style>
+  /* Estilo do Modal */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Estilo do Conteúdo e do Botão Apagar */
+.conteudo {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.delete-container {
+  margin-top: 10px;
+}
+
+.delete-btn {
+  color: red;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  text-align: right;
+}
+  </style>
+
+</body>
+
+</html>

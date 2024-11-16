@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="forms.css">
+  <title>Números nos Trilhos</title>
+</head>
+
+<body>
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero">
+            <h1><span>MATEMÁTICA NO METRO</span></h1>
+          </a>
+        </div>
+        <div class="nav-list">
+          <div class="bar"></div>
+          <li><a href="index.html" class="btn">Voltar</a></li>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="wrapper">
+    <div class="card-switch">
+      <label class="switch">
+        <input type="checkbox" class="toggle">
+        <span class="slider"></span>
+        <span class="card-side"></span>
+        <div class="flip-card__inner">
+          
+          <!-- Login Form (Front Side) -->
+          <div class="flip-card__front">
+            <div class="title">Portal do professor</div>
+            <form class="flip-card__form" action="/login" method="POST">
+              <input class="flip-card__input" name="cpf" placeholder="CPF" type="text" required oninput="formatCPF(this)">
+              <input class="flip-card__input" name="password" placeholder="Senha" type="password" required>
+              <button class="flip-card__btn">Entrar</button>
+            </form>
+          </div>
+          
+          <!-- Registration Form (Back Side) -->
+          <div class="flip-card__back">
+            <div class="title">Ainda não tem cadastro?</div>
+            <form class="flip-card__form" action="/winpro.html" method="POST">
+              <input class="flip-card__input" name="name" placeholder="Nome" type="text" required>
+              <input class="flip-card__input" name="cpf" placeholder="CPF" type="text" required oninput="formatCPF(this)">
+              <input class="flip-card__input" name="password" placeholder="Senha" type="password" required>
+              <button class="flip-card__btn">Enviar</button>
+            </form>
+          </div>
+          
+        </div>
+      </label>
+    </div>   
+  </div>
+
+  <script>
+    function formatCPF(input) {
+      let value = input.value.replace(/\D/g, '');
+      if (value.length <= 11) {
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+      }
+      input.value = value;
+    }
+  </script>
+  <script src="./app.js"></script>
+</body>
+
+</html>

@@ -71,7 +71,7 @@ p {
 	color: crimson;
 }
 
-/* Header section */
+/* passo a passo beta */
 #header {
 	position: fixed;
 	z-index: 1000;
@@ -196,9 +196,9 @@ p {
 #header .hamburger.active .bar::after {
 	top: 0;
 }
-/* End Header section */
+/* passo a passo beta */
 
-/* Hero Section */
+/* passo a passo beta */
 #hero {
 	background-image: url(./img/hero-bg.png);
 	background-size: cover;
@@ -262,9 +262,9 @@ p {
 	animation-delay: 2.5s;
 }
 
-/* End Hero Section */
+/* passo a passo beta */
 
-/* Services Section */
+/* passo a passo beta */
 #services .services {
 	flex-direction: column;
 	text-align: center;
@@ -324,9 +324,9 @@ p {
 	color: white;
 	text-align: left;
 }
-/* End Services Section */
+/* passo a passo beta */
 
-/* Projects section */
+/* passo a passo beta */
 #projects .projects {
 	flex-direction: column;
 	max-width: 1200px;
@@ -397,9 +397,9 @@ p {
 #projects .project-item:hover .project-img img {
 	transform: scale(1.1);
 }
-/* End Projects section */
+/* passo a passo beta */
 
-/* About Section */
+/* passo a passo beta */
 #about .about {
 	flex-direction: column-reverse;
 	text-align: center;
@@ -445,9 +445,9 @@ p {
 	border: 7px solid crimson;
 	z-index: -1;
 }
-/* End About Section */
+/* passo a passo beta */
 
-/* contact Section */
+/* passo a passo beta */
 #contact .contact {
 	flex-direction: column;
 	max-width: 1200px;
@@ -455,7 +455,7 @@ p {
 	width: 90%;
 }
 #contact .contact-items {
-	/* max-width: 400px; */
+	/* passo a passo beta */
 	width: 100%;
 }
 #contact .contact-item {
@@ -490,9 +490,9 @@ p {
 	line-height: 2rem;
 	font-weight: 500;
 }
-/*End contact Section */
+/* passo a passo beta */
 
-/* Footer */
+/* passo a passo beta */
 #footer {
 	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
 }
@@ -530,9 +530,9 @@ p {
 	color: white;
 	font-size: 1.3rem;
 }
-/* End Footer */
+/* passo a passo beta */
 
-/* Keyframes */
+/* passo a passo beta */
 @keyframes hamburger_puls {
 	0% {
 		opacity: 1;
@@ -564,9 +564,9 @@ p {
 		font-weight: 500;
 	}
 }
-/* End Keyframes */
+/* passo a passo beta */
 
-/* Media Query For Tablet */
+/* passo a passo beta */
 @media only screen and (min-width: 768px) {
 	.cta {
 		font-size: 2.5rem;
@@ -576,20 +576,20 @@ p {
 		font-size: 6rem;
 	}
 
-	/* Hero */
+	/* passo a passo beta */
 	#hero h1 {
 		font-size: 7rem;
 	}
-	/* End Hero */
+	/* passo a passo beta */
 
-	/* Services Section */
+	/* passo a passo beta */
 	#services .service-bottom .service-item {
 		flex-basis: 45%;
 		margin: 2.5%;
 	}
-	/* End Services Section */
+	/* passo a passo beta */
 
-	/* Project */
+	/* passo a passo beta */
 	#projects .project-item {
 		flex-direction: row;
 	}
@@ -608,9 +608,9 @@ p {
 	#projects .all-projects .project-img {
 		height: 100%;
 	}
-	/* End Project */
+	/* passo a passo beta */
 
-	/* About */
+	/* passo a passo beta */
 	#about .about {
 		flex-direction: row;
 	}
@@ -633,9 +633,9 @@ p {
 	#about .col-right h1 {
 		text-align: left;
 	}
-	/* End About */
+	/* passo a passo beta */
 
-	/* contact  */
+	/* passo a passo beta */
 	#contact .contact {
 		flex-direction: column;
 		padding: 100px 0;
@@ -667,13 +667,13 @@ p {
 		text-align: left;
 		padding-left: 20px;
 	}
-	/* End contact  */
+	/* passo a passo beta */
 }
-/* End Media Query For Tablet */
+/* passo a passo beta */
 
-/* Media Query For Desktop */
+/* passo a passo beta */
 @media only screen and (min-width: 1200px) {
-	/* header */
+	/* passo a passo beta */
 	#header .hamburger {
 		display: none;
 	}
@@ -693,14 +693,14 @@ p {
 	#header .nav-list ul a:after {
 		display: none;
 	}
-	/* End header */
+	/* passo a passo beta */
 
 	#services .service-bottom .service-item {
 		flex-basis: 22%;
 		margin: 1.5%;
 	}
 }
-/* End  Media Query For Desktop */
+/* passo a passo beta */
 
 /* login formulario */ 
 .login {
@@ -796,5 +796,4 @@ p {
 	background-color: rgb(0, 0, 0);
 	color: white;
   }
-  
   
