@@ -1,6 +1,3 @@
-Aqui está o README ajustado para mais clareza, formatação e precisão:
-
----
 
 # Matemática no Metro
 
