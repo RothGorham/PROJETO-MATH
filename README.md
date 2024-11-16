@@ -1,4 +1,5 @@
 
+
 # Matemática no Metro
 
 **Matemática no Metro** é um projeto que transforma o aprendizado de matemática em uma experiência interessante, divertida e acessível para todos. No centro deste projeto está a estação Sacomã do metrô de São Paulo, um local convertido em um ponto de encontro para quem deseja explorar o mundo dos números de forma diferente. Por meio de nosso sistema online, os alunos terão acesso a uma ampla gama de conteúdos para estudar em casa. Os materiais incluem jogos educativos que tornam o aprendizado mais dinâmico, um blog para interação com colegas e professores, e exercícios desafiadores para testar e consolidar conhecimentos.
@@ -21,7 +22,6 @@ O projeto visa promover a matemática de forma divertida e envolvente, conectand
 
 - **RPG Temático de Matemática**  
   Um jogo interativo baseado nas linhas do metrô, em que cada fase corresponde a uma matéria de matemática básica, proporcionando um aprendizado envolvente e imersivo.
-![Matemática no Metro](rpg.png)
 
 - **Sistema de Presença**  
   Registro de presenças com histórico diário e total, além de funcionalidade para exportar os dados para planilhas em formato Excel.
@@ -43,4 +43,26 @@ O projeto visa promover a matemática de forma divertida e envolvente, conectand
   MongoDB com Mongoose
 
 ---
+
+## Como Instalar e Rodar o Projeto
+
+1. **Clone este repositório:**
+
+   ```bash
+   git clone https://github.com/RothGorham/PROJETO-MATH.git
+   cd projeto-math
+   ```
+
+2. **Instale as dependências:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Inicie o projeto:**
+
+   ```bash
+   npm start
+   ```
+
 
