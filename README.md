@@ -22,6 +22,7 @@ O projeto visa promover a matemática de forma divertida e envolvente, conectand
 
 - **RPG Temático de Matemática**  
   Um jogo interativo baseado nas linhas do metrô, em que cada fase corresponde a uma matéria de matemática básica, proporcionando um aprendizado envolvente e imersivo.
+  ![Matemática no Metro](rpg.png)
 
 - **Sistema de Presença**  
   Registro de presenças com histórico diário e total, além de funcionalidade para exportar os dados para planilhas em formato Excel.
