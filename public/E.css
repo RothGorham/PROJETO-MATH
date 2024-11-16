@@ -1,0 +1,161 @@
+:root {
+    --primary-color: #dc143c;
+    --background-dark: #333333;
+    --text-light: #ffffff;
+    --hover-color: #ff1744;
+    --border-color: rgba(220, 20, 60, 0.3);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+  
+  body {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .upload-section {
+    margin-bottom: 2rem;
+  }
+  
+  .drop-zone {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .drop-zone:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  .drop-zone-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .icon {
+    font-size: 3rem;
+  }
+  
+  .upload-button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .upload-button:hover {
+    background-color: var(--hover-color);
+  }
+  
+  .file-info {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .sheet-selector,
+  .search-box {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  select,
+  input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+  }
+  
+  select:focus,
+  input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+  
+  .table-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  th {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+  }
+  
+  tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+    }
+    
+    .controls {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }

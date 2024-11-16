@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matemática no Metro - Sistema de Alunos</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Matemática no Metro - Sistema de Presença</title>
+    <link rel="stylesheet" href="presensa.css">
 </head>
 <body>
     <header>
@@ -27,358 +27,131 @@
                 <button id="searchButton" onclick="searchStudents()">
                     <span class="icon">🔍</span> Buscar
                 </button>
+                <button onclick="openAddProfessorModal()" class="btn-secondary">Adicionar Professor</button>
             </div>
-            <button onclick="downloadData()" class="btn-download">
-                <span class="icon">📥</span> Exportar Dados
-            </button>
-        </section>
+            <div class="action-buttons">
+                <button onclick="exportToCSV()" class="btn-download">
+                    <span class="icon">📥</span> Exportar Dados
+                </button>
+                <button onclick="deleteAllStudents()" class="btn-danger">
+                    <span class="icon">🗑️</span> Excluir Todos os Alunos
+                </button>
 
+                <br>
+                <div class="navigation-buttons">
+                    <button onclick="window.location.href='E.html'" class="btn-navigation">
+                        <span class="icon">➡️</span> Leitor de Arquivo .xlsx
+                    </button>
+                </div>
+            </div>
+            
+        </section>
         <section class="students-grid" id="studentsContainer">
-            <!-- Students will be dynamically added here -->
+            <!-- Students will be added here dynamically -->
+        </section>
+    
+        <section class="attendance-details" id="attendanceDetailsContainer">
+            <!-- Attendance details will be added here dynamically -->
         </section>
     </main>
 
-    <!-- Modal de Presença -->
-<div id="attendanceModal" class="modal">
-  <div class="modal-content">
-      <div class="modal-header">
-          <h2>Registrar Presença</h2>
-          <button class="close-btn" onclick="closeModal()">&times;</button>
-      </div>
-      <form id="attendanceForm" onsubmit="submitAttendance(event)">
-          <input type="hidden" id="studentId">
-          <div class="form-group">
-              <label for="studentName">Nome do Aluno:</label>
-              <input type="text" id="studentName" disabled>
-          </div>
-          <div class="form-group">
-              <label for="studentCPF">CPF do Aluno:</label>
-              <input type="text" id="studentCPF" disabled>
-          </div>
-          <div class="form-group">
-              <label for="subject">Matéria:</label>
-              <input type="text" id="subject" required>
-          </div>
-          <div class="form-row">
-              <div class="form-group">
-                  <label for="date">Data:</label>
-                  <input type="date" id="date" required>
-              </div>
-              <div class="form-group">
-                  <label for="dayOfWeek">Dia da Semana:</label>
-                  <select id="dayOfWeek" required>
-                      <option value="Segunda-feira">Segunda-feira</option>
-                      <option value="Terça-feira">Terça-feira</option>
-                      <option value="Quarta-feira">Quarta-feira</option>
-                      <option value="Quinta-feira">Quinta-feira</option>
-                      <option value="Sexta-feira">Sexta-feira</option>
-                      <option value="Sábado">Sábado</option>
-                      <option value="Domingo">Domingo</option>
-                  </select>
-              </div>
-              <div class="form-group">
-                  <label for="hours">Horas:</label>
-                  <select id="hours" required>
-                      <option value="06:00">06:00</option>
-                      <option value="06:30">06:30</option>
-                      <option value="07:00">07:00</option>
-                      <option value="07:30">07:30</option>
-                      <option value="08:00">08:00</option>
-                      <option value="08:30">08:30</option>
-                      <option value="09:00">09:00</option>
-                      <option value="09:30">09:30</option>
-                      <option value="10:00">10:00</option>
-                      <option value="10:30">10:30</option>
-                      <option value="11:00">11:00</option>
-                      <option value="11:30">11:30</option>
-                      <option value="12:00">12:00</option>
-                      <option value="12:30">12:30</option>
-                      <option value="13:00">13:00</option>
-                      <option value="13:30">13:30</option>
-                      <option value="14:00">14:00</option>
-                      <option value="14:30">14:30</option>
-                      <option value="15:00">15:00</option>
-                      <option value="15:30">15:30</option>
-                      <option value="16:00">16:00</option>
-                      <option value="16:30">16:30</option>
-                      <option value="17:00">17:00</option>
-                      <option value="17:30">17:30</option>
-                      <option value="18:00">18:00</option>
-                      <option value="18:30">18:30</option>
-                      <option value="19:00">19:00</option>
-                      <option value="19:30">19:30</option>
-                      <option value="20:00">20:00</option>
-                      <option value="20:30">20:30</option>
-                      <option value="21:00">21:00</option>
-                      <option value="21:30">21:30</option>
-                      <option value="22:00">22:00</option>
-                      <option value="22:30">22:30</option>
-                      <option value="23:00">23:00</option>
-                      <option value="23:30">23:30</option>
-                  </select>
-              </div>
-          </div>
-          <div class="form-group">
-              <label for="grade">Nota:</label>
-              <input type="number" id="grade" min="0" max="10" step="0.5" required>
-          </div>
-          <div class="form-group">
-              <label for="observation">Observações:</label>
-              <textarea id="observation" rows="3"></textarea>
-          </div>
-          <div class="form-actions">
-              <button type="submit" class="btn-primary">Salvar</button>
-              <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
-          </div>
-      </form>
-  </div>
-</div>
+    <div id="attendanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Registrar Presença</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="attendanceForm" onsubmit="submitAttendance(event)">
+                <input type="hidden" id="studentId">
+                <div class="form-group">
+                    <label for="studentName">Nome do Aluno:</label>
+                    <input type="text" id="studentName" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="studentCPF">CPF do Aluno:</label>
+                    <input type="text" id="studentCPF" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Matéria:</label>
+                    <input type="text" id="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="professorName">Nome do Professor:</label>
+                    <input type="text" id="professorName" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Data:</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dayOfWeek">Dia da Semana:</label>
+                        <select id="dayOfWeek" required>
+                            <option value="Segunda-feira">Segunda-feira</option>
+                            <option value="Terça-feira">Terça-feira</option>
+                            <option value="Quarta-feira">Quarta-feira</option>
+                            <option value="Quinta-feira">Quinta-feira</option>
+                            <option value="Sexta-feira">Sexta-feira</option>
+                            <option value="Sábado">Sábado</option>
+                            <option value="Domingo">Domingo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="hours">Horário:</label>
+                    <select id="hours" required>
+                        <option value="06:00">06:00</option>
+                        <option value="07:00">07:00</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="grade">Nota:</label>
+                    <input type="number" id="grade" min="0" max="10" step="0.5" required>
+                </div>
+                <div class="form-group">
+                    <label for="observation">Observações:</label>
+                    <textarea id="observation" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Salvar</button>
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <script src="main.js"></script>
-    <script>
-            document.getElementById('searchInput').addEventListener('input', function (e) {
-            e.target.value = formatCPF(e.target.value);
-        });
-        
-        function formatCPF(cpf) {
-            cpf = cpf.replace(/\D/g, ""); // Remove tudo o que não é dígito
-            cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca um ponto entre o terceiro e o quarto dígitos
-            cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca um ponto entre o sexto e o sétimo dígitos
-            cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Coloca um hífen entre o nono e o décimo dígitos
-            return cpf;
-        }
-        
-               function openModal(studentId, studentName, studentCPF) {
-            document.getElementById('studentId').value = studentId || '';
-            document.getElementById('studentName').value = studentName || '';
-            document.getElementById('studentCPF').value = studentCPF || '';
-            document.getElementById('attendanceModal').style.display = 'flex';
-        }
-        
-        function closeModal() {
-            document.getElementById('attendanceModal').style.display = 'none';
-        }
-        
-        function submitAttendance(event) {
-            event.preventDefault();
-            // Lógica para enviar os dados do formulário
-        }
-    </script>
+    <div id="addProfessorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Adicionar Professor</h2>
+                <button class="close-btn" onclick="closeAddProfessorModal()">&times;</button>
+            </div>
+            <form id="addProfessorForm" onsubmit="submitAddProfessor(event)">
+                <div class="form-group">
+                    <label for="professorCPF">CPF do Professor:</label>
+                    <input type="text" id="professorCPF" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Adicionar</button>
+                    <button type="button" class="btn-secondary" onclick="closeAddProfessorModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="presensa.js"></script>
 </body>
-<style>
-  :root {
-    --primary-color: rgb(220, 20, 60);
-    --secondary-color: #ff0707;
-    --danger-color: #f43636;
-    --success-color: #af4c4c;
-    --text-color: #333;
-    --bg-color: #f5f5f5;
-    --card-bg: #ffffff;
-    --border-radius: 8px;
-    --shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-}
-
-/* Header Styles */
-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 1rem;
-    box-shadow: var(--shadow);
-}
-
-nav {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-/* Main Content */
-main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-/* Search Section */
-.search-section {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.search-container {
-    flex: 1;
-    display: flex;
-    gap: 0.5rem;
-}
-
-#searchInput {
-    flex: 1;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-}
-
-/* Buttons */
-button {
-    cursor: pointer;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: var(--border-radius);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.2s ease;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.btn-secondary {
-    background-color: #e0e0e0;
-    color: var(--text-color);
-}
-
-.btn-danger {
-    background-color: var(--danger-color);
-    color: white;
-}
-
-.btn-success {
-    background-color: var(--success-color);
-    color: white;
-}
-
-/* Students Grid */
-.students-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.student-card {
-    background-color: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-    transition: transform 0.2s ease;
-}
-
-.student-card:hover {
-    transform: translateY(-2px);
-}
-
-.student-info {
-    margin-bottom: 1rem;
-}
-
-.student-actions {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background-color: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    cursor: pointer;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-}
-
-.form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .search-section {
-        flex-direction: column;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
 </html>

@@ -1,0 +1,232 @@
+:root {
+    --primary: #0066cc;
+    --secondary: #00994d;
+    --accent: #ffcc00;
+    --dark: #333333;
+    --light: #ffffff;
+    --gray: #f5f5f5;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--light);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.navbar h1 {
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.nav-btn {
+    background: var(--primary);
+    color: var(--light);
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.nav-btn:hover {
+    background: var(--dark);
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://saocaetanodosul.net/wp-content/uploads/2024/07/Metro-na-Linha-1-Azul.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    color: var(--light);
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-btn {
+    background: var(--accent);
+    color: var(--dark);
+    padding: 15px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Story Section */
+.story {
+    padding: 100px 0;
+    background: var(--gray);
+}
+
+.story h2 {
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+.story-card {
+    background: var(--light);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.story-card p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: var(--dark);
+}
+
+/* Phases Section */
+.phases {
+    padding: 100px 0;
+}
+
+.phases h2 {
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+.phases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.phase-card {
+    background: var(--light);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: var(--transition);
+}
+
+.phase-card:hover {
+    transform: translateY(-5px);
+}
+
+.phase-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.phase-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.phase-icon i {
+    color: var(--light);
+    font-size: 1.5rem;
+}
+
+.phase-title h3 {
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.phase-content {
+    color: var(--dark);
+}
+
+.mission {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.mission h4 {
+    color: var(--secondary);
+    margin-bottom: 10px;
+}
+
+/* Footer */
+.footer {
+    background: var(--dark);
+    color: var(--light);
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .phases-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-btn {
+        padding: 8px 20px;
+    }
+}

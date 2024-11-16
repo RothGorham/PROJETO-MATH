@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitor de Arquivo .xlsx com Sistema de Busca</title>
+    <link rel="stylesheet" href="E.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="presenca.html" class="upload-button" style="text-decoration: none;">Gerenciamento de Alunos</a>
+             <br>
+             <br>
+            <h1>Leitor de Arquivo .xlsx</h1>
+        </header>
+        <main>
+            <div class="upload-section">
+                <div class="drop-zone" id="dropZone">
+                    <div class="drop-zone-content">
+                        <span class="icon">📄</span>
+                        <p>Arraste e solte seu arquivo Excel aqui</p>
+                        <p>ou</p>
+                        <label class="upload-button">
+                            Selecione um arquivo
+                            <input type="file" id="fileInput" accept=".xlsx" hidden>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="file-info" id="fileInfo" style="display: none;">
+                <h3>Arquivo carregado: <span id="fileName"></span></h3>
+                <div class="controls">
+                    <div class="sheet-selector">
+                        <label for="sheetSelect">Selecione a planilha:</label>
+                        <select id="sheetSelect"></select>
+                    </div>
+                    <div class="search-box">
+                        <label for="searchInput">Buscar conteúdo:</label>
+                        <input type="text" id="searchInput" placeholder="Digite o termo de busca...">
+                    </div>
+                </div>
+            </div>
+            <div class="table-container" id="output"></div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="e.js"></script>
+</body>
+</html>

@@ -31,6 +31,16 @@
         <br>
         <a href="Areaprofessor.html" type="button" class="cta">Voltar</a>
         <br>
+        <select id="filtroCategoria" onchange="filtrarConteudos()" class="cta">
+          <option value="">Filtrar por Categoria</option>
+          <option value="videos">Vídeos</option>
+          <option value="exercicios">Exercícios</option>
+          <option value="materia">Matéria</option>
+          <option value="avisos">Avisos</option>
+        </select>
+        <br>
+        <button onclick="apagarTodosConteudos()" class="cta">Apagar Todos</button>
+        <br>        
         <a onclick="mostrarFormularioConteudo()" class="cta">Criar novo conteúdo</a>
       </div>
     </div>
@@ -236,7 +246,7 @@
     // Função para renderizar um conteúdo no DOM
     function renderConteudo(conteudo) {
       var conteudoHTML = `
-        <div class="conteudo" id="conteudo-${conteudo._id}">
+        <div class="conteudo" id="conteudo-${conteudo._id}" data-categoria="${conteudo.categoria}">
           <h2>${conteudo.titulo}</h2>
           <p>${conteudo.descricao}</p>
           <a href="${conteudo.link}" target="_blank">${conteudo.link}</a>
@@ -278,6 +288,41 @@
   
     // Carregar os conteúdos ao carregar a página
     window.onload = carregarConteudos;
+
+
+  // Função para filtrar os conteúdos por categoria
+function filtrarConteudos() {
+  const categoria = document.getElementById('filtroCategoria').value;
+  const conteudos = document.querySelectorAll('.conteudo');
+
+  conteudos.forEach(conteudo => {
+    if (categoria === '' || conteudo.getAttribute('data-categoria') === categoria) {
+      conteudo.style.display = 'block';
+    } else {
+      conteudo.style.display = 'none';
+    }
+  });
+}
+
+// Função para apagar todos os conteúdos
+async function apagarTodosConteudos() {
+  try {
+    // Confirmar antes de apagar tudo
+    if (confirm('Tem certeza que deseja apagar todos os conteúdos?')) {
+      const response = await fetch('/conteudos', { method: 'DELETE' });
+      if (response.ok) {
+        document.getElementById('conteudos').innerHTML = ''; // Limpar todos os conteúdos do DOM
+        console.log('Todos os conteúdos foram apagados.');
+      } else {
+        console.error('Erro ao apagar todos os conteúdos.');
+      }
+    }
+  } catch (error) {
+    console.error('Erro ao apagar todos os conteúdos:', error);
+  }
+}
+
+
   </script>
 
   <style>
