@@ -155,7 +155,7 @@ app.get('/areaprofessor.html', authMiddleware, (req, res) => {
 // Servir arquivos estáticos da pasta 'public'
 app.use(express.static('./public'));
 
-
+git add .git add .
 
 
 // Rota para baixar dados de presença
