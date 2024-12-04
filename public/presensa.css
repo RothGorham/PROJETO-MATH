@@ -1,10 +1,10 @@
-SIETEMA DE PRESENCA MEIO APAGADO 
+
 :root {
   --primary-color: #ff0044;
   --background-dark: #242424;
-  --card-background: #000000;
-  --text-light: #ffffff00;
-  --text-gray: #ffffff;
+  --card-background: #424242;
+  --text-light: #ffffff;
+  --text-gray: #888888;
 }
 
 * {
@@ -20,7 +20,7 @@ body {
   min-height: 100vh;
 }
 
-/* Header Styles */
+
 header {
   background-color: var(--card-background);
   padding: 1rem 2rem;
@@ -41,14 +41,14 @@ nav {
   font-weight: 600;
 }
 
-/* Main Content */
+
 main {
   max-width: 1200px;
   margin: 2rem auto;
   padding: 0 2rem;
 }
 
-/* Search Section */
+
 .search-section {
   margin-bottom: 2rem;
 }
@@ -73,7 +73,7 @@ main {
   gap: 1rem;
 }
 
-/* Button Styles */
+
 button {
   padding: 0.8rem 1.5rem;
   border: none;
@@ -124,7 +124,7 @@ button {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Student Grid */
+
 .students-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -159,7 +159,7 @@ button {
 .student-cpf {
   color: var(--text-gray);
   font-size: 0.9rem;
-  margin-bottom: 1rem; /* Adiciona espaço abaixo do CPF */
+  margin-bottom: 1rem; 
 }
 
 .student-actions {
@@ -167,7 +167,7 @@ button {
   gap: 0.5rem;
 }
 
-/* Modal Styles */
+
 .modal {
   display: none;
   position: fixed;
@@ -208,7 +208,7 @@ button {
   cursor: pointer;
 }
 
-/* Form Styles */
+
 .form-group {
   margin-bottom: 1rem;
 }
@@ -244,7 +244,7 @@ input:disabled {
   margin-top: 2rem;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .search-container {
       flex-direction: column;
